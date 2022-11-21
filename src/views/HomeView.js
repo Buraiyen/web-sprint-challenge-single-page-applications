@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import './HomeView.css';
 const Homepage = () => {
@@ -8,9 +9,11 @@ const Homepage = () => {
           <h2 className='jumbotron__header'>
             Your favorite food, delivered while coding
           </h2>
-          <Button type='primary' size='lg'>
-            Pizza?
-          </Button>
+          <Link to='/pizza' id='order-pizza'>
+            <Button type='primary' size='lg'>
+              Pizza?
+            </Button>
+          </Link>
         </div>
       </section>
     </>
