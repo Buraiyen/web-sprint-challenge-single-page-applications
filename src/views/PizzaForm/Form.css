@@ -1,0 +1,16 @@
+#pizza-form {
+  width: 800px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form__container {
+  margin-left: 10px;
+}
+
+.form__header {
+  text-align: center;
+}

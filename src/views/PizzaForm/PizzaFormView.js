@@ -1,5 +1,10 @@
+import Form from './Form';
 const PizzaFormView = () => {
-  return <h2>Pizza Form</h2>;
+  return (
+    <>
+      <Form />
+    </>
+  );
 };
 
 export default PizzaFormView;
