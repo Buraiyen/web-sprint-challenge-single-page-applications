@@ -1,3 +1,4 @@
+import Button from '../components/ui/Button';
 import './HomeView.css';
 const Homepage = () => {
   return (
@@ -7,7 +8,9 @@ const Homepage = () => {
           <h2 className='jumbotron__header'>
             Your favorite food, delivered while coding
           </h2>
-          <button>Pizza?</button>
+          <Button type='primary' size='lg'>
+            Pizza?
+          </Button>
         </div>
       </section>
     </>
