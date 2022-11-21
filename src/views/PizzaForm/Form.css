@@ -13,8 +13,20 @@
 
 .form__container {
   margin: 15px;
+  position: relative;
+  width: 100%;
 }
 
 .form__header {
   text-align: center;
+}
+
+.form__container--toppings {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.topping {
+  width: 50%;
 }

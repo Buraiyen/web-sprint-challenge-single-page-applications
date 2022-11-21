@@ -34,6 +34,54 @@ const Form = () => {
         <br />
         <input type='radio' name='sauce' value='spinach_alfredo' />
         <label htmlFor='sauce'>Spinach Alfredo</label>
+
+        {/* Pizza toppings */}
+        <label htmlFor='toppings'>
+          <h3>Add toppings</h3>
+          <p>Choose up to 10</p>
+        </label>
+        <div className='form__container--toppings'>
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='diced_tomatoes' />
+            Diced Tomatoes
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='sausage' />
+            Sausage
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='black_olives' />
+            Black Olives
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='' />
+            Pepperoni
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>{' '}
+          <label htmlFor='toppings' className='topping'>
+            <input type='checkbox' name='toppings' value='pepperoni' />
+            Pepperoni
+          </label>
+        </div>
       </section>
     </form>
   );
