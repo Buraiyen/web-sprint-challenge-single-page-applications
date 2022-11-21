@@ -5,10 +5,14 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 9px 10px 32px 3px rgba(0, 0, 0, 0.73);
+  -webkit-box-shadow: 9px 10px 32px 3px rgba(0, 0, 0, 0.73);
+  -moz-box-shadow: 9px 10px 32px 3px rgba(0, 0, 0, 0.73);
 }
 
 .form__container {
-  margin-left: 10px;
+  margin: 15px;
 }
 
 .form__header {
