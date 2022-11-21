@@ -1,9 +1,16 @@
 import './HomeView.css';
 const Homepage = () => {
   return (
-    <h2>
-      <section className='jumbotron'></section>
-    </h2>
+    <>
+      <section className='jumbotron'>
+        <div className='jumbotron__container'>
+          <h2 className='jumbotron__header'>
+            Your favorite food, delivered while coding
+          </h2>
+          <button>Pizza?</button>
+        </div>
+      </section>
+    </>
   );
 };
 
