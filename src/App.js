@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import HomeView from './views/HomeView';
-import PizzaFormView from './views/PizzaFormView';
+import HomeView from './views/Home/HomeView';
+import PizzaFormView from './views/PizzaForm/PizzaFormView';
 const App = () => {
   return (
     <>
