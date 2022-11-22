@@ -1,13 +1,24 @@
+import { useState } from 'react';
 import './Form.css';
 import Button from '../../components/ui/Button';
 const Form = () => {
-  const submitHandler = () => {
-    console.log('Submitted!');
+  // States
+
+  // Handlers
+  const submitHandler = (event) => {
+    event.preventDefault();
+    alert('Submitted!');
   };
   return (
     <form id="pizza-form" onSubmit={submitHandler}>
       <section className="form__container">
         <h2 className="form__header">Build Your Own Pizza</h2>
+        <section>
+          <label htmlFor="full_name">
+            <h3>Name</h3>
+          </label>
+          <input type="text" name="full_name" id="name-input" />
+        </section>
         {/* Pizza size */}
         <section>
           <label htmlFor="size">
