@@ -5,6 +5,8 @@ const Form = () => {
   // States
   const [formData, setFormData] = useState({
     fullName: '',
+    size: '',
+    sauce: '',
   });
   // Handlers
   const submitHandler = (event) => {
@@ -37,7 +39,7 @@ const Form = () => {
             <h3>Choice of size</h3>
             <p>Required *</p>
           </label>
-          <select name='size' id=''>
+          <select name='size' id='' onChange={inputChangeHandler}>
             <option value='small'>Small</option>
             <option value='medium'>Medium</option>
             <option value='large'>Large</option>
@@ -49,16 +51,36 @@ const Form = () => {
             <h3>Choice of Sauce</h3>
             <p>Required *</p>
           </label>
-          <input type='radio' name='sauce' value='original_red' />
+          <input
+            type='radio'
+            name='sauce'
+            value='originalRed'
+            onChange={inputChangeHandler}
+          />
           <label htmlFor='sauce'>Original Red</label>
           <br />
-          <input type='radio' name='sauce' value='garlic_ranch' />
+          <input
+            type='radio'
+            name='sauce'
+            value='garlicRanch'
+            onChange={inputChangeHandler}
+          />
           <label htmlFor='sauce'>Garlic Ranch</label>
           <br />
-          <input type='radio' name='sauce' value='bbq_sauce' />
+          <input
+            type='radio'
+            name='sauce'
+            value='bbq_sauce'
+            onChange={inputChangeHandler}
+          />
           <label htmlFor='sauce'>BBQ Sauce</label>
           <br />
-          <input type='radio' name='sauce' value='spinach_alfredo' />
+          <input
+            type='radio'
+            name='sauce'
+            value='spinachAlfredo'
+            onChange={inputChangeHandler}
+          />
           <label htmlFor='sauce'>Spinach Alfredo</label>
         </section>
         {/* Pizza toppings */}
