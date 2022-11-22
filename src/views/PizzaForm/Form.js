@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Form.css';
-import Button from '../../components/ui/Button';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const Form = () => {
   // States
@@ -9,10 +9,15 @@ const Form = () => {
     fullName: '',
     size: 'small',
     sauce: '',
-    toppings: [],
+    topping1: false,
+    topping2: false,
+    topping3: false,
+    topping4: false,
     substitute: false,
-    specialInstructions: '',
+    special: '',
   });
+
+  const [postData, setPostData] = useState([]);
 
   const [formErrors, setFormErrors] = useState({ fullName: '' });
 
@@ -23,11 +28,25 @@ const Form = () => {
       .string()
       .required('Must include a full name')
       .min(2, 'name must be at least 2 characters'),
+    sauce: yup.string().required('Sauce is required'),
+    size: yup.string(),
+    topping1: yup.boolean(),
+    topping2: yup.boolean(),
+    topping3: yup.boolean(),
+    topping4: yup.boolean(),
+    substitute: yup.boolean(),
+    special: yup.string(),
   });
   // Handlers
   const submitHandler = (event) => {
     event.preventDefault();
-    alert('Submitted!');
+    axios
+      .post('https://reqres.in/api/orders', formData)
+      .then((res) => {
+        setPostData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.response));
   };
 
   const inputChangeHandler = (event) => {
@@ -37,29 +56,12 @@ const Form = () => {
     setFormData({ ...formData, [name]: valueToUse });
   };
 
-  const toppingChangeHandler = (event) => {
-    const { type, checked, value } = event.target;
-    const { toppings } = formData;
-    if (checked && type === 'checkbox') {
-      setFormData({ ...formData, toppings: [...toppings, value] });
-    } else {
-      setFormData({
-        ...formData,
-        toppings: toppings.filter((e) => e !== value),
-      });
-    }
-  };
-
   const addFormErrors = (name, value) => {
     yup
       .reach(formSchema, name)
       .validate(value)
-      .then(() => {
-        setFormErrors({ ...formErrors, [name]: '' });
-      })
-      .catch((err) => {
-        setFormErrors({ ...formErrors, [name]: err.errors[0] });
-      });
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
   useEffect(() => {
@@ -144,93 +146,39 @@ const Form = () => {
             <label htmlFor='toppings' className='topping'>
               <input
                 type='checkbox'
-                name='toppings'
+                name='topping1'
                 value='pepperoni'
-                onChange={toppingChangeHandler}
+                onChange={inputChangeHandler}
               />
               Pepperoni
             </label>
             <label htmlFor='toppings' className='topping'>
               <input
                 type='checkbox'
-                name='toppings'
+                name='topping2'
                 value='dicedTomatoes'
-                onChange={toppingChangeHandler}
+                onChange={inputChangeHandler}
               />
               Diced Tomatoes
             </label>{' '}
             <label htmlFor='toppings' className='topping'>
               <input
                 type='checkbox'
-                name='toppings'
+                name='topping3'
                 value='sausage'
-                onChange={toppingChangeHandler}
+                onChange={inputChangeHandler}
               />
               Sausage
             </label>{' '}
             <label htmlFor='toppings' className='topping'>
               <input
                 type='checkbox'
-                name='toppings'
-                value='blackOlives'
-                onChange={toppingChangeHandler}
-              />
-              Black Olives
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
-                value='canadianBacon'
-                onChange={toppingChangeHandler}
-              />
-              Canadian Bacon
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
-                value='roastedGarlic'
-                onChange={toppingChangeHandler}
-              />
-              Roasted Garlic
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
-                value='spicyItalianSausage'
-                onChange={toppingChangeHandler}
-              />
-              Spicy Italian Sausage
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
-                value='artichokeHearts'
-                onChange={toppingChangeHandler}
-              />
-              Artichoke Hearts
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
-                value='veganChicken'
-                onChange={toppingChangeHandler}
-              />
-              Vegan Chicken
-            </label>{' '}
-            <label htmlFor='toppings' className='topping'>
-              <input
-                type='checkbox'
-                name='toppings'
+                name='topping4'
                 value='tofu'
-                onChange={toppingChangeHandler}
+                onChange={inputChangeHandler}
               />
-              Tofu
-            </label>
+              Sausage
+            </label>{' '}
           </div>
         </section>
         {/* Substitute */}
@@ -249,7 +197,7 @@ const Form = () => {
           <input
             type='text'
             id='special-text'
-            name='specialInstructions'
+            name='special'
             placeholder="Anything else you'd like to have?"
             className='form__instructions'
             onChange={inputChangeHandler}
@@ -257,9 +205,9 @@ const Form = () => {
         </section>
         <section style={{ marginTop: '10px' }}>
           <input type='number' />
-          <Button type='primary' disabled={buttonDisabled}>
-            Add to Order
-          </Button>
+          <button id='order-button' disabled={buttonDisabled}>
+            Submit
+          </button>
         </section>
       </section>
     </form>
