@@ -8,6 +8,7 @@ const Form = () => {
     size: 'small',
     sauce: '',
     toppings: [],
+    substitute: false,
   });
   // Handlers
   const submitHandler = (event) => {
@@ -16,8 +17,9 @@ const Form = () => {
   };
 
   const inputChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = event.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    setFormData({ ...formData, [name]: valueToUse });
   };
 
   const toppingChangeHandler = (event) => {
@@ -201,7 +203,11 @@ const Form = () => {
         <section>
           <h3>Choice of Substitute</h3>
           <p>Choose up to one</p>
-          <input type='checkbox' name='substitute' />
+          <input
+            type='checkbox'
+            name='substitute'
+            onChange={inputChangeHandler}
+          />
           <label htmlFor='substitute'>Gluten Free Crust (+ $1.00)</label>
         </section>
         <section>
