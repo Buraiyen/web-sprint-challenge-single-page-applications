@@ -1,4 +1,5 @@
 import './Form.css';
+import Button from '../../components/ui/Button';
 const Form = () => {
   const submitHandler = () => {
     console.log('Submitted!');
@@ -19,7 +20,6 @@ const Form = () => {
             <option value="large">Large</option>
           </select>
         </section>
-
         {/* Pizza sauce */}
         <section>
           <label htmlFor="sauce">
@@ -38,7 +38,6 @@ const Form = () => {
           <input type="radio" name="sauce" value="spinach_alfredo" />
           <label htmlFor="sauce">Spinach Alfredo</label>
         </section>
-
         {/* Pizza toppings */}
         <section>
           <label htmlFor="toppings">
@@ -91,6 +90,25 @@ const Form = () => {
               Tofu
             </label>
           </div>
+        </section>
+        {/* Substitute */}
+        <section>
+          <h3>Choice of Substitute</h3>
+          <p>Choose up to one</p>
+          <input type="checkbox" name="substitute" />
+          <label htmlFor="substitute">Gluten Free Crust (+ $1.00)</label>
+        </section>
+        <section>
+          <h3>Special Instructions</h3>
+          <input
+            type="text"
+            placeholder="Anything else you'd like to have?"
+            className="form__instructions"
+          />
+        </section>
+        <section style={{ marginTop: '10px' }}>
+          <input type="number" />
+          <Button type="primary">Add to Order</Button>
         </section>
       </section>
     </form>
