@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './Form.css';
 import Button from '../../components/ui/Button';
+import * as yup from 'yup';
+
 const Form = () => {
   // States
   const [formData, setFormData] = useState({
@@ -10,6 +12,16 @@ const Form = () => {
     toppings: [],
     substitute: false,
     specialInstructions: '',
+  });
+
+  const [formErrors, setFormErrors] = useState({ fullName: '' });
+
+  // Form vaidation schema
+  const formSchema = yup.object().shape({
+    fullName: yup
+      .string()
+      .required('Must include a full name')
+      .min(2, 'name must be at least 2 characters'),
   });
   // Handlers
   const submitHandler = (event) => {
@@ -57,7 +69,7 @@ const Form = () => {
             <h3>Choice of size</h3>
             <p>Required *</p>
           </label>
-          <select name='size' id='' onChange={inputChangeHandler}>
+          <select name='size' id='size-dropdown' onChange={inputChangeHandler}>
             <option value='small'>Small</option>
             <option value='medium'>Medium</option>
             <option value='large'>Large</option>
@@ -215,6 +227,7 @@ const Form = () => {
           <h3>Special Instructions</h3>
           <input
             type='text'
+            id='special-text'
             name='specialInstructions'
             placeholder="Anything else you'd like to have?"
             className='form__instructions'
