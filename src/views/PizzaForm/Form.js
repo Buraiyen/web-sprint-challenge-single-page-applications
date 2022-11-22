@@ -9,6 +9,7 @@ const Form = () => {
     sauce: '',
     toppings: [],
     substitute: false,
+    specialInstructions: '',
   });
   // Handlers
   const submitHandler = (event) => {
@@ -87,7 +88,7 @@ const Form = () => {
           <input
             type='radio'
             name='sauce'
-            value='bbq_sauce'
+            value='bbqSauce'
             onChange={inputChangeHandler}
           />
           <label htmlFor='sauce'>BBQ Sauce</label>
@@ -214,8 +215,10 @@ const Form = () => {
           <h3>Special Instructions</h3>
           <input
             type='text'
+            name='specialInstructions'
             placeholder="Anything else you'd like to have?"
             className='form__instructions'
+            onChange={inputChangeHandler}
           />
         </section>
         <section style={{ marginTop: '10px' }}>
