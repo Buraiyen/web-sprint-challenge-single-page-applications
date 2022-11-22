@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Form.css';
 import Button from '../../components/ui/Button';
 import * as yup from 'yup';
@@ -16,6 +16,7 @@ const Form = () => {
 
   const [formErrors, setFormErrors] = useState({ fullName: '' });
 
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   // Form vaidation schema
   const formSchema = yup.object().shape({
     fullName: yup
@@ -32,6 +33,7 @@ const Form = () => {
   const inputChangeHandler = (event) => {
     const { name, value, type, checked } = event.target;
     const valueToUse = type === 'checkbox' ? checked : value;
+    addFormErrors(name, value);
     setFormData({ ...formData, [name]: valueToUse });
   };
 
@@ -48,6 +50,24 @@ const Form = () => {
     }
   };
 
+  const addFormErrors = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({ ...formErrors, [name]: '' });
+      })
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] });
+      });
+  };
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => {
+      setButtonDisabled(!valid);
+    });
+  }, [formData]);
+
   return (
     <form id='pizza-form' onSubmit={submitHandler}>
       <section className='form__container'>
@@ -56,6 +76,7 @@ const Form = () => {
           <label htmlFor='fullName'>
             <h3>Name</h3>
           </label>
+          <p>{formErrors.fullName}</p>
           <input
             type='text'
             name='fullName'
@@ -236,7 +257,9 @@ const Form = () => {
         </section>
         <section style={{ marginTop: '10px' }}>
           <input type='number' />
-          <Button type='primary'>Add to Order</Button>
+          <Button type='primary' disabled={buttonDisabled}>
+            Add to Order
+          </Button>
         </section>
       </section>
     </form>
