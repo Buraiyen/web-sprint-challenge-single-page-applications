@@ -7,7 +7,11 @@ const Button = (props) => {
   // Button sizes
   props.size === 'lg' ? (type += ' lg') : (type += '');
 
-  return <button className={type}>{props.children}</button>;
+  return (
+    <button className={type} disabled={props.disabled}>
+      {props.children}
+    </button>
+  );
 };
 
 export default Button;
