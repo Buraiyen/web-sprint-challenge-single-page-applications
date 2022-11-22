@@ -78,12 +78,12 @@ const Form = () => {
             Artichoke Hearts
           </label>{' '}
           <label htmlFor="toppings" className="topping">
-            <input type="checkbox" name="toppings" value="pepperoni" />
-            Pepperoni
+            <input type="checkbox" name="toppings" value="vegan_chicken" />
+            Vegan Chicken
           </label>{' '}
           <label htmlFor="toppings" className="topping">
-            <input type="checkbox" name="toppings" value="pepperoni" />
-            Pepperoni
+            <input type="checkbox" name="toppings" value="tofu" />
+            Tofu
           </label>
         </div>
       </section>
